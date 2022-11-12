@@ -1,0 +1,7 @@
+POST http://localhost:4040/generate-text
+Content-Type: application/json
+
+{
+    "prompt":"summer in switzerland",
+    "numberOfWords":100
+}
