@@ -73,9 +73,5 @@ Project Organization
     - git clone https://huggingface.co/EleutherAI/gpt-neo-2.7B (2.7B parameter model)
 
 ** models not fine tuned
-<<<<<<< HEAD
-
-=======
->>>>>>> 66d3b0d (merged)
     
 
