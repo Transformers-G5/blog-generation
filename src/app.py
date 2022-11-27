@@ -15,16 +15,16 @@ def test():
 @app.route("/generate-text", methods=["POST"])
 def generateText():
     data = request.json
-    print(data['prompt'])
     prompt = data['prompt']
-    numberOfWords = data['numberOfWords']
+    sub_prompts = data['subprompts']
     msg = ''
     generated_text = ''
+    numberOfWords = 300
 
     if not prompt:
         msg = 'Text Prompt is required'
-    elif not numberOfWords:
-        msg = 'Number of words is required'
+    elif not sub_prompts:
+        msg = 'Sub Prompts is required'
     else:
         generator = TextGenerator("./src/models/gpt-neo-125M")
         generated_text = generator.generateText(prompt, numberOfWords)
