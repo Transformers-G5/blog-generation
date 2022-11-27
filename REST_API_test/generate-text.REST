@@ -3,5 +3,4 @@ Content-Type: application/json
 
 {
     "prompt":"summer in switzerland",
-    "numberOfWords":100
 }
