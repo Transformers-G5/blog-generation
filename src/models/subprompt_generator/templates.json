@@ -1,0 +1,20 @@
+[
+  {
+    "template": "What is <Noun> ?",
+    "contexts": [
+      {
+        "feeling": "Curious"
+      }
+    ],
+    "types": ["Question", "Know"]
+  },
+  {
+    "template": "Why <Noun>|<Verb> ?",
+    "contexts": [
+      {
+        "feeling": "Curious"
+      }
+    ],
+    "types": ["Question", "Know"]
+  }
+]
