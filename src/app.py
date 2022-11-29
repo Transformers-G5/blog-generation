@@ -2,14 +2,34 @@ from flask import Flask, send_from_directory, request, flash, jsonify
 from flask_cors import CORS
 
 from models.generate_text import TextGenerator
+from models.subprompt_generator import SubPromptgenerator
 
 app = Flask(__name__)
 CORS(app)
 
 
+generator = TextGenerator("./src/models/gpt-neo-125M")
+subpromptGenerator = SubPromptgenerator()
+
+
 @app.route("/test", methods=["GET"])
 def test():
     return "<h1>Working...</h1>"
+
+
+@app.route("/get-outline", methods=['POST'])
+def generateOutline():
+    data = request.json
+    prompt = data['prompt']
+    msg = ''
+
+    if not prompt:
+        msg = 'Text Prompt is required'
+    else:
+        generated_sbp = subpromptGenerator.generate(prompt)
+        msg = 'successfully generated'
+
+    return jsonify({'outline': generated_sbp, 'message': msg})
 
 
 @app.route("/generate-text", methods=["POST"])
@@ -26,7 +46,6 @@ def generateText():
     elif not sub_prompts:
         msg = 'Sub Prompts is required'
     else:
-        generator = TextGenerator("./src/models/gpt-neo-125M")
         generated_text = generator.generateText(prompt, numberOfWords)
         msg = 'successfully generated'
 
