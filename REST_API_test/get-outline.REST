@@ -1,0 +1,6 @@
+POST http://localhost:4040/get-outline
+Content-Type: application/json
+
+{
+    "prompt":"How to escape procastination?"
+}

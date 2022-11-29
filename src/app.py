@@ -38,18 +38,17 @@ def generateText():
     prompt = data['prompt']
     sub_prompts = data['subprompts']
     msg = ''
-    generated_text = ''
-    numberOfWords = 300
 
     if not prompt:
         msg = 'Text Prompt is required'
     elif not sub_prompts:
         msg = 'Sub Prompts is required'
     else:
-        generated_text = generator.generateText(prompt, numberOfWords)
+        intro, paras = generator.generateBlog(prompt, sub_prompts)
         msg = 'successfully generated'
+        generator.clean()
 
-    return jsonify({'text': generated_text, 'message': msg})
+    return jsonify({'intro': intro, 'paragraphs': paras, 'message': msg})
 
 
 @app.route("/get-image", methods=["POST"])

@@ -2,5 +2,9 @@ POST http://localhost:4040/generate-text
 Content-Type: application/json
 
 {
-    "prompt":"summer in switzerland",
+    "prompt":"How to escape procastination?",
+    "subprompts":[
+        "How to Stop Procrastinating - Overcoming the Habit of Delaying ...",
+        "How to Stop Procrastinating: 14 Practical Ways for Procrastinators ..."
+    ]
 }
