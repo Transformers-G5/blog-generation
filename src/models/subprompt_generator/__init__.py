@@ -8,11 +8,19 @@ import pprint
 my_api_key = "AIzaSyB0bwYCFOqsz9guwKHKAPKHOvwZ-oUqTSY"
 my_cse_id = "c0dfdebfea2ca432f"
 
+from keytotext import pipeline
+
 class SubPromptgenerator:
     def __init__(self, num_prompts=4) -> None:
         self.num_prompts = num_prompts
         self.puncs = ["?", "!", "."]
-        pass
+        self.q_pres = ["How", "When", "What", "Where"]
+
+
+        self.nlp = pipeline("mrm8488/t5-base-finetuned-common_gen")
+        # k2t = pipeline("k2t")
+        # k2tbase = pipeline("k2t-base")
+
 
     def generate(self, prompt):
         '''
@@ -28,9 +36,26 @@ class SubPromptgenerator:
         #find probabilities for pre defined subprompt templates
         #create subpropmts using the most probable n subpropmts
 
-        subs = self.__getSubpromptsWeb(prompt )
+        # subs = self.__getSubpromptsWeb(prompt )
+        subs = self.__generateSubPromptsLocal(prompt)
 
         return subs
+
+    def __generateSubPromptsLocal(self, prompt):
+        k = list(prompt.split(" "))
+        k_qs = []
+
+        for i in self.q_pres:
+            k_qs.append([i] + k + ["?"])
+
+        sub_qks = []
+        for i in k_qs:
+            sub_qks.append(self.nlp(i))
+
+        sub =  [self.nlp(k)] + sub_qks
+        return sub
+
+     
     
     def __findNouns(self, prompt):
         is_noun = lambda pos: pos[:2] == 'NN'
