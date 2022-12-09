@@ -2,13 +2,11 @@ POST http://localhost:4040/generate-text
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
     "prompt":"summer in switzerland",
-=======
-    "prompt":"How to escape procastination?",
     "subprompts":[
-        "How to Stop Procrastinating - Overcoming the Habit of Delaying ...",
-        "How to Stop Procrastinating: 14 Practical Ways for Procrastinators ..."
+        "iPhone vs. Android: Which is better for you?",
+        "iPhone vs. Android | U.S.",
+        "iPhone vs. Android: How to choose the best smartphone for you ...",
+        "Android or iPhone? We asked 3 phone experts which is best ..."
     ]
->>>>>>> develop
 }
