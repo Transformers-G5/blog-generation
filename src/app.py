@@ -51,6 +51,27 @@ def generateText():
     return jsonify({'intro': intro, 'paragraphs': paras, 'message': msg})
 
 
+@app.route("/generate-text", methods=["POST"])
+def generateText():
+    data = request.json
+    print(data['prompt'])
+    prompt = data['prompt']
+    numberOfWords = data['numberOfWords']
+    msg = ''
+    generated_text = ''
+
+    if not prompt:
+        msg = 'Text Prompt is required'
+    elif not numberOfWords:
+        msg = 'Number of words is required'
+    else:
+        generator = TextGenerator("./src/models/gpt-neo-125M")
+        generated_text = generator.generateText(prompt, numberOfWords)
+        msg = 'successfully generated'
+
+    return jsonify({'text': generated_text, 'message': msg})
+
+
 @app.route("/get-image", methods=["POST"])
 def generateImage():
     prompt = request.form['prompt']

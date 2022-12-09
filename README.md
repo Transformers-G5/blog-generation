@@ -56,21 +56,6 @@ Project Organization
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 
-
-## Docker Installation
-### 1. Clone GPT-Neo model
-1. cd /src/models
-2. git lfs install (make sure git lfs is installed)
-3. 
-    - git clone https://huggingface.co/EleutherAI/gpt-neo-125M (125M parameter model) 
-    - git clone https://huggingface.co/EleutherAI/gpt-neo-1.3B (1.3B parameter model)
-    - git clone https://huggingface.co/EleutherAI/gpt-neo-2.7B (2.7B parameter model)
-### 2. Create Docker Image
-1. docker build . -t blog-generation
-
-### 3. Run Docker Image
-2. docker run -p 4040:4040 blog-generation
-
 ## Conda Environment Initialisation
 ### 1. Create Conda environment
 1. conda create --name g5-model python=3.8
@@ -88,8 +73,6 @@ Project Organization
     - git clone https://huggingface.co/EleutherAI/gpt-neo-2.7B (2.7B parameter model)
 
 ** models not fine tuned
-
-
 
     
 
