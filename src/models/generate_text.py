@@ -6,11 +6,8 @@ class TextGenerator:
         self.model_path = model_path
         self.generator = pipeline('text-generation', model=self.model_path)
         self.generatedText = ""
-<<<<<<< HEAD
-=======
         self.intro = ""
         self.paras = []
->>>>>>> develop
 
     def generateText(self, prompt="", max_length=10):
         print(">> Generating text")
@@ -20,8 +17,6 @@ class TextGenerator:
         print(">> Text generated for prompt :", prompt)
         return self.generatedText
 
-<<<<<<< HEAD
-=======
     def __generate_intro(self, prompt, max_length=200):
         self.intro = self.generator(
             prompt, max_length=max_length, do_sample=True, temperature=0.9)
@@ -44,7 +39,6 @@ class TextGenerator:
         self.intro = ""
         self.paras = []
 
->>>>>>> develop
     def saveGeneratedText(self, fileName="output.txt"):
         with open(fileName, 'w') as f:
             f.writelines(self.generatedText)
