@@ -4,9 +4,10 @@ Content-Type: application/json
 {
     "prompt":"summer in switzerland",
     "subprompts":[
-        "iPhone vs. Android: Which is better for you?",
-        "iPhone vs. Android | U.S.",
-        "iPhone vs. Android: How to choose the best smartphone for you ...",
-        "Android or iPhone? We asked 3 phone experts which is best ..."
+        "iphone vs android",
+    "how to choose the right iphone vs android",
+    "when is the last time you compared an android to an iphone",
+    "what is the difference between an android and an iphone?",
+    "where is the difference between an android and an iphone"
     ]
 }
