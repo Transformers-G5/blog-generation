@@ -2,7 +2,7 @@ POST http://localhost:4040/generate-text
 Content-Type: application/json
 
 {
-    "prompt":"iphone vs android",
+    "prompt":"summer in switzerland",
     "subprompts":[
         "iPhone vs. Android: Which is better for you?",
         "iPhone vs. Android | U.S.",
