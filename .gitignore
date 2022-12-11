@@ -1,3 +1,4 @@
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -87,3 +88,11 @@ target/
 
 # Mypy cache
 .mypy_cache/
+
+# models
+# gpt-neo-125M model
+/src/models/gpt-neo-125M
+/src/models/gpt-neo-1.3B
+/src/models/gpt-neo-2.7B
+# t5-base-finetuned-common_gen
+/src/models/t5-base-finetuned-common_gen
