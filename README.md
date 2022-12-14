@@ -88,6 +88,8 @@ Project Organization
     - git clone https://huggingface.co/EleutherAI/gpt-neo-125M (125M parameter model) 
     - git clone https://huggingface.co/EleutherAI/gpt-neo-1.3B (1.3B parameter model)
     - git clone https://huggingface.co/EleutherAI/gpt-neo-2.7B (2.7B parameter model)
+4. Model for subprompts
+    - git clone https://huggingface.co/mrm8488/t5-base-finetuned-common_gen
 
 ** models not fine tuned
 
