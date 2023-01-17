@@ -69,7 +69,7 @@ class SubPromptgenerator:
         for key in nouns_map.keys():
           k_nouns.append(key)
         
-        print(k_nouns, "nouns")
+        # print(k_nouns, "nouns")
 
 
         k_qs_noun = []   #list to store augmanted text using nouns
@@ -98,12 +98,37 @@ class SubPromptgenerator:
         
         return sub
 
-    def __findNouns(self, prompt):
-        def is_noun(pos): return pos[:2] == 'NN'
-        tokenized = nltk.word_tokenize(prompt)
-        nouns = [word for (word, pos) in nltk.pos_tag(
-            tokenized) if is_noun(pos)]
+ 
+    def __findNouns(self, sentence):
+        # is_noun = lambda pos: pos[:2] == 'NN'
+        # tokenized = nltk.word_tokenize(prompt)
+        # nouns = [word for (word, pos) in nltk.pos_tag(tokenized) if is_noun(pos)] 
+        doc = self.nlp_noun(sentence)
+        np_labels = set([nsubj, nsubjpass, dobj, iobj, pobj])
+        nounsMap = {}
+        for word in doc:
+          if word.dep in np_labels:
+            nounsMap[word.text] = word.dep_
+            
+        return nounsMap
         return nouns
+    def __removepunc(self, sentence):
+      punc = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+ 
+      # Removing punctuations in string
+      # Using loop + punctuation string
+      for ele in sentence:
+          if ele in punc:
+              sentence = sentence.replace(ele, "")
+      return sentence
+
+    def __removeduplicate(self, str_list):
+
+      str_list =list(map( self.__removepunc, str_list))
+      #remove all the spaces
+      str_list = list(map(lambda x: x.strip(), str_list))
+      return list(set(str_list))
+
 
     def __google_search(self, search_term, api_key, cse_id, **kwargs):
         service = build("customsearch", "v1", developerKey=api_key)
