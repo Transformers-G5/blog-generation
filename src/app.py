@@ -29,7 +29,7 @@ def generateOutline():
         generated_sbp = subpromptGenerator.generate(prompt)
         msg = 'successfully generated'
 
-    return jsonify({'outline': generated_sbp, 'message': msg})
+    return jsonify({'outline': generated_sbp[:5], 'message': msg})
 
 
 @app.route("/generate-text", methods=["POST"])

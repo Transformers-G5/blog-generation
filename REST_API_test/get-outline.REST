@@ -2,5 +2,5 @@ POST http://localhost:4040/get-outline
 Content-Type: application/json
 
 {
-    "prompt":"iphone vs android"
+    "prompt":"how to live life?"
 }
