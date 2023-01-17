@@ -80,6 +80,7 @@ Project Organization
 ### 2. Install dependencies
 1. conda activate g5-model
 2. pip install -r requirements.txt
+3. python -m spacy download en_core_web_sm
 
 ### 3. Clone GPT-Neo model
 1. cd /src/models
@@ -88,6 +89,8 @@ Project Organization
     - git clone https://huggingface.co/EleutherAI/gpt-neo-125M (125M parameter model) 
     - git clone https://huggingface.co/EleutherAI/gpt-neo-1.3B (1.3B parameter model)
     - git clone https://huggingface.co/EleutherAI/gpt-neo-2.7B (2.7B parameter model)
+4. Model for subprompts
+    - git clone https://huggingface.co/mrm8488/t5-base-finetuned-common_gen
 
 ** models not fine tuned
 

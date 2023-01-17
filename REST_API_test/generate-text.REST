@@ -2,12 +2,14 @@ POST http://localhost:4040/generate-text
 Content-Type: application/json
 
 {
-    "prompt":"summer in switzerland",
-    "subprompts":[
-        "iphone vs android",
-    "how to choose the right iphone vs android",
-    "when is the last time you compared an android to an iphone",
-    "what is the difference between an android and an iphone?",
-    "where is the difference between an android and an iphone"
-    ]
+    "prompt": "successfully generated",
+  "subprompts": [
+    "how to live a life of love in the real world?",
+    "how to live a life of love?",
+    "how to live a happy life?",
+    "how to live a life of love in a city?",
+    "what is life like?",
+    "where is life?",
+    "i love you but i dont know if you have a life like this?"
+  ]
 }

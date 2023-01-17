@@ -17,12 +17,19 @@ model = AutoModelForSeq2SeqLM.from_pretrained(path_to_model)
 my_api_key = "AIzaSyB0bwYCFOqsz9guwKHKAPKHOvwZ-oUqTSY"
 my_cse_id = "c0dfdebfea2ca432f"
 
+from spacy.symbols import *
+import spacy   
+from spacy.matcher import Matcher
+from spacy.util import filter_spans
 
 class SubPromptgenerator:
     def __init__(self, num_prompts=4) -> None:
         self.num_prompts = num_prompts
         self.puncs = ["?", "!", "."]
-        self.q_pres = ["How", "When", "What", "Where"]
+        self.q_pres = ["How", "When", "What", "Where", "Is", "Does", "Do", "Is it"]
+
+        self.nlp_noun = spacy.load('en_core_web_sm') 
+
 
         # self._nlp = pipeline("mrm8488/t5-base-finetuned-common_gen")
         # k2t = pipeline("k2t")
@@ -57,22 +64,71 @@ class SubPromptgenerator:
         k = list(prompt.split(" "))
         k_qs = []
 
+        k_nouns = []   #list to store nouns from the prompt
+        nouns_map = self.__findNouns(prompt)
+        for key in nouns_map.keys():
+          k_nouns.append(key)
+        
+        # print(k_nouns, "nouns")
+
+
+        k_qs_noun = []   #list to store augmanted text using nouns
+
+        for i in self.q_pres:
+          k_qs_noun.append([i] + k_nouns + ["?"])
+
+
         for i in self.q_pres:
             k_qs.append([i] + k + ["?"])
 
         sub_qks = []
         for i in k_qs:
             sub_qks.append(self.nlp(i))
+        for i in k_qs_noun:
+          sub_qks.append(self.nlp(i))
 
-        sub = [self.nlp(k)] + sub_qks
+        sub_qks = self.__removeduplicate([self.nlp(k)] + sub_qks )
+
+        sub_qks = list(map(lambda x: x + "?", sub_qks))
+
+
+        sub = sub_qks
+
+
+        
         return sub
 
-    def __findNouns(self, prompt):
-        def is_noun(pos): return pos[:2] == 'NN'
-        tokenized = nltk.word_tokenize(prompt)
-        nouns = [word for (word, pos) in nltk.pos_tag(
-            tokenized) if is_noun(pos)]
+ 
+    def __findNouns(self, sentence):
+        # is_noun = lambda pos: pos[:2] == 'NN'
+        # tokenized = nltk.word_tokenize(prompt)
+        # nouns = [word for (word, pos) in nltk.pos_tag(tokenized) if is_noun(pos)] 
+        doc = self.nlp_noun(sentence)
+        np_labels = set([nsubj, nsubjpass, dobj, iobj, pobj])
+        nounsMap = {}
+        for word in doc:
+          if word.dep in np_labels:
+            nounsMap[word.text] = word.dep_
+            
+        return nounsMap
         return nouns
+    def __removepunc(self, sentence):
+      punc = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+ 
+      # Removing punctuations in string
+      # Using loop + punctuation string
+      for ele in sentence:
+          if ele in punc:
+              sentence = sentence.replace(ele, "")
+      return sentence
+
+    def __removeduplicate(self, str_list):
+
+      str_list =list(map( self.__removepunc, str_list))
+      #remove all the spaces
+      str_list = list(map(lambda x: x.strip(), str_list))
+      return list(set(str_list))
+
 
     def __google_search(self, search_term, api_key, cse_id, **kwargs):
         service = build("customsearch", "v1", developerKey=api_key)
