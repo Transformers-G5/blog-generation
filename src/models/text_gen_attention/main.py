@@ -261,8 +261,8 @@ class Generator():
         return result
 
 if __name__ == '__main__':
-    textgen = Generator(model_path='../../../notebooks/40_model.tf', 
-                path_to_vectorizer_config='../../../notebooks/text_processor_config.pkl', path_to_vectorizer_weights='../../../notebooks/text_processor_weights.pkl')
+    textgen = Generator(model_path='../../../models/attention/40_cp.ckpt', 
+                path_to_vectorizer_config='../../../models/attention/text_processor_config.pkl', path_to_vectorizer_weights='../../../models/attention/text_processor_weights.pkl')
     
     
     result = textgen.generate(inputs={'prompt':"Life"}, max_word=100)
