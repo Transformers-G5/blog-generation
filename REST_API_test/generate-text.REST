@@ -2,7 +2,7 @@ POST http://localhost:4040/generate-text
 Content-Type: application/json
 
 {
-    "prompt": "successfully generated",
+    "prompt": "how to live life?",
   "subprompts": [
     "how to live a life of love in the real world?",
     "how to live a life of love?",

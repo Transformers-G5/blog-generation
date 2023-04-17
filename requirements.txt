@@ -10,3 +10,5 @@ transformers==4.18.0
 spacy==3.4.4
 opencv-python
 keytotext==2.3.2
+tensorflow-macos==2.12.0 
+protobuf==3.20

@@ -3,6 +3,7 @@ from flask_cors import CORS
 
 from models.generate_text import TextGenerator
 from models.subprompt_generator import SubPromptgenerator
+from models.LSTM.generate import LSTMTextGenerator
 
 app = Flask(__name__)
 CORS(app)
@@ -10,6 +11,10 @@ CORS(app)
 
 generator = TextGenerator("./src/models/gpt-neo-125M")
 subpromptGenerator = SubPromptgenerator()
+engLstmGenerator = LSTMTextGenerator(model_path="./src/models/LSTM/model_weights_english_v1.hdf5",
+                                     tokenizer_path='./src/models/LSTM/tokenizer_english.pickle', rwm_path='./src/models/LSTM/reverse_word_map_english.json')
+assameseLstmGenerator = LSTMTextGenerator(model_path="./src/models/LSTM/model_weights_assamese_v1.hdf5",
+                                          tokenizer_path='./src/models/LSTM/tokenizer_assamese.pickle', rwm_path='./src/models/LSTM/reverse_word_map_assamese.json')
 
 
 @app.route("/test", methods=["GET"])
@@ -65,6 +70,31 @@ def generateImage():
         msg = 'successfully generated'
 
     return jsonify({'message': msg})
+
+
+@app.route("/generate-post-lstm", methods=['POST'])
+def generatePost():
+    data = request.json
+    prompt = data['prompt']
+    num_of_words = data['numberOfWords']
+    num_of_words = int(num_of_words)
+    language = data['language']  # english, assamese
+    msg = ''
+
+    if not prompt:
+        msg = "Text prompt is required"
+    elif not num_of_words:
+        msg = "Number of words is required"
+    else:
+        if language == "assamese":
+            generated_text = assameseLstmGenerator.generateText(
+                prompt, num_of_words)
+        else:
+            generated_text = engLstmGenerator.generateText(
+                prompt, num_of_words)
+        msg = 'successfully generated'
+
+    return jsonify({'message': msg, 'text': generated_text})
 
 
 if __name__ == "__main__":

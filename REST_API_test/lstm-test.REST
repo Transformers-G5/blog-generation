@@ -1,0 +1,19 @@
+###
+POST http://localhost:4040/generate-post-lstm
+Content-Type: application/json
+
+{
+    "prompt":"What a beautiful day",
+    "numberOfWords":30,
+    "language":"english"
+}
+
+###
+POST http://localhost:4040/generate-post-lstm
+Content-Type: application/json
+
+{
+    "prompt":"এক ম'ল পানীৰ ভৰ হ'ব প্ৰায়",
+    "numberOfWords":30,
+    "language":"assamese"
+}
