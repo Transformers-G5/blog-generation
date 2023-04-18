@@ -113,7 +113,7 @@ class Decoder(tf.keras.layers.Layer):
     #3. The RNN output will be the query for the attention layer.
     self.attention = CrossAttention(self.units)
 
-    # self.fc1 = tf.keras.layers.Dense(self.units, activation='relu')
+    self.fc1 = tf.keras.layers.Dense(self.units, activation='relu')
     # 4. This fully connected layer produces the logits for each output token.
     self.output_layer = tf.keras.layers.Dense(self.vocab_size)
 
@@ -125,7 +125,7 @@ class Decoder(tf.keras.layers.Layer):
     #Use the rnn output as the query for the attention over the context
     x = self.attention(x, context)
 
-    # x = self.fc1(x)
+    x = self.fc1(x)
 
     #generate logit predictyions for the next token
     logits = self.output_layer(x)
@@ -253,19 +253,23 @@ class Generator():
 
         # print(new_model.gen(["hello"], 50))
         return new_model
+    def descardEND(self, text):
+        return text.split("[END]")[0]
     
-    def generate(self, inputs, max_word=50):
+    def generate(self, inputs, max_word=50, discard_end=False):
         prompt = inputs['prompt']
         result = self.model.gen(texts=[prompt], max_length=max_word)
         result = result[0].numpy().decode()
+        if discard_end:
+            result = self.descardEND(result)
         return result
 
 if __name__ == '__main__':
-    textgen = Generator(model_path='../../../models/attention/40_cp.ckpt', 
+    textgen = Generator(model_path='../../../models/attention/20_model.tf', 
                 path_to_vectorizer_config='../../../models/attention/text_processor_config.pkl', path_to_vectorizer_weights='../../../models/attention/text_processor_weights.pkl')
     
-    
-    result = textgen.generate(inputs={'prompt':"Life"}, max_word=100)
+    prompt = "Positive Emotions"
+    result = textgen.generate(inputs={'prompt':prompt}, max_word=200)
     print()
     print()
-    print("RESULT: ", result)
+    print("RESULT: ", prompt,  result)
