@@ -96,3 +96,6 @@ target/
 /src/models/gpt-neo-2.7B
 # t5-base-finetuned-common_gen
 /src/models/t5-base-finetuned-common_gen
+
+#transformers
+src/models/transformers/bytelevel/models

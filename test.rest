@@ -1,0 +1,7 @@
+POST http://localhost:4040/api/gentext/story
+Content-Type: application/json
+
+{
+  "prompt": "He is",
+  "max_len":50
+}
