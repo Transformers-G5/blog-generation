@@ -5,19 +5,19 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
-tokenizer = None
-batch_size = None
-max_itrs = None
-eval_interval = None
-eval_iters = None
-device = None
-learning_rate = None
-n_embd = None
-n_layer = None
-n_head = None
-drop_out = None
-block_size = None
-vocab_size = None
+# tokenizer = None
+# batch_size = None
+# max_itrs = None
+# eval_interval = None
+# eval_iters = None
+# device = None
+# learning_rate = None
+# n_embd = None
+# n_layer = None
+# n_head = None
+# drop_out = None
+# block_size = None
+# vocab_size = None
 specials = ["[PAD]", "[start]", "[end]", "[UNK]",
             "[MASK]", '[PROMPT_START]', '[PROMPT_END]']
 
@@ -33,7 +33,7 @@ def realtimePrint(line_text):
 
 
 def setup(vocab_path, merges_path, block_size, num_embd, num_layer, num_head):
-    global batch_size, max_itrs, device, learning_rate, n_embd, n_layer, n_head, drop_out, vocab_size, tokenizer, pad_token_id
+    # global batch_size, max_itrs, device, learning_rate, n_embd, n_layer, n_head, drop_out, vocab_size, tokenizer, pad_token_id
     batch_size = 32
     max_itrs = 1000
     device = 'cuda' if torch.cuda.is_available() else 'cpu'

@@ -1,7 +1,7 @@
-POST http://localhost:4040/api/gentext/story
+POST http://localhost:4040/api/gentext/marketing/email
 Content-Type: application/json
 
 {
-  "prompt": "He is",
+  "prompt": "subject",
   "max_len":50
 }
