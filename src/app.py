@@ -168,7 +168,7 @@ def blogAPI():
     result_topk = result_topk[prompt_len:]
 
     response = {
-        'gen_text': result,
+        'text': result,
         'more': [{'text': result_topk, 'info':f'Top k sampling, k=1, temp={temperature}'}]
     }
 
@@ -205,7 +205,7 @@ def emailMarketingAPI():
     result_topk = result_topk[prompt_len:]
 
     response = {
-        'gen_text': result,
+        'text': result,
         'more': [{'text': result_topk, 'info':f'Top k sampling, k=1, temp={temperature}'}]
     }
 
@@ -240,7 +240,7 @@ def marketingSchoolAPI():
     result_topk = result_topk[prompt_len:]
 
     response = {
-        'gen_text': result,
+        'text': result,
         'more': [{'text': result_topk, 'info':f'Top k sampling, k=1, temp={temperature}'}]
     }
 
@@ -275,7 +275,7 @@ def marketingResturantAPI():
     result_topk = result_topk[prompt_len:]
 
     response = {
-        'gen_text': result,
+        'text': result,
         'more': [{'text': result_topk, 'info':f'Top k sampling, k=1, temp={temperature}'}]
     }
 
@@ -314,7 +314,7 @@ def storyAPI():
     result_topk = remove_offensive(result_topk)
 
     response = {
-        'gen_text': result,
+        'text': result,
         'more': [{'text': result_topk, 'info':f'Top k sampling, k=1, temp={temperature}'}]
     }
 

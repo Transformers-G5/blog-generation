@@ -1,0 +1,40 @@
+POST http://localhost:4040/api/gentext/blog
+Content-Type: application/json
+
+{
+    "prompt": "how to live life?",
+    "max_len": 100
+}
+
+####
+
+POST http://localhost:4040/api/gentext/marketing/restaurant
+Content-Type: application/json
+
+{
+    "prompt": "",
+    "max_len": 1000,
+    "name": "Mini Dhaba"
+}
+
+####
+
+POST http://localhost:4040/api/gentext/marketing/school
+Content-Type: application/json
+
+{
+    "prompt": "",
+    "max_len": 100,
+    "name": "JEC"
+}
+
+####
+
+POST http://localhost:4040/api/gentext/marketing/email
+Content-Type: application/json
+
+{
+    "prompt": "",
+    "max_len": 100,
+    "name": "JEC"
+}
