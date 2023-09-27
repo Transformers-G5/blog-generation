@@ -1,7 +1,9 @@
 Transformers-final-year-project
 ==============================
 
-Final Year Project (Blog Generation)
+*Project done as a part of partial fulfillment of requirements of B.Tech in Computer Science and Engg. of [ASTU](https://astu.ac.in/) (Assam Science and Technology University)*
+
+Final Year Project (TEXT GENERATION USING GENERATIVE AI) : Application to generate blogs and other text based content like email and social media posts using custom trained Transformer, LSTM models on various dataset of English and Assamese language. Option to generate blog with GPT-Neo is also available. Can be run as a standalone application without any need to call for external APIs. The project contains a flask API and the frontend to connect and communicate with it is available at [https://github.com/Transformers-G5/gen-front](https://github.com/Transformers-G5/gen-front)
 
 Project Organization
 ------------
